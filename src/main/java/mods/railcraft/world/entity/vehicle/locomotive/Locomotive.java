@@ -10,6 +10,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 import com.mojang.authlib.GameProfile;
 import mods.railcraft.RailcraftConfig;
@@ -792,6 +793,10 @@ public abstract class Locomotive extends RailcraftMinecart implements
     // Moved from linkage manager - this should not be there
     if (getSpeed().compareTo(Speed.SLOWEST) > 0) {
       setSpeed(Speed.SLOWEST);
+    }
+
+    if (this.isReverse() && cart.isAutoLinkEnabled()){
+      this.setReverse(false);
     }
   }
 
